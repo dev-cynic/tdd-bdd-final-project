@@ -32,3 +32,8 @@ class ProductFactory(factory.Factory):
 
     id = factory.Sequence(lambda n: n)
    ## Add code to create Fake Products 
+    name = factory.Faker('word')  # Generates a random word for the name
+    description = factory.Faker('text', max_nb_chars=250)  # Generates random text
+    price = factory.fuzzy.FuzzyDecimal(1.0, 1000.0, precision=2)  # Price between 1 and 1000 with 2 decimals
+    available = factory.Faker('boolean')  # Randomly True or False
+    category = factory.fuzzy.FuzzyChoice(Category)  # Randomly picks a value from the Category enum
